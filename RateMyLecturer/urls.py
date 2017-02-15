@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('main.urls', namespace='main')),
     url(r'^log/', include('log.urls', namespace='log')),
+    url(r'^lecturer/', include('lecturer.urls', namespace='lecturer')),
 ]

@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Add Lecturer</title>
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
+        <script src="{% static 'js/AddLecturerScript.js'%}"></script>
+    </head>
+    <body>
+        <h1>Add Lecturer</h1>
+
+        <p>
+            <form name="addLecturerForm" action="/lecturer/add" method="post">
+                {% csrf_token %}
+
+                Title: <input type="text" id="title" name="title" /><br />
+                First Name: <input type="text" id="firstName" name="firstName" /><br />
+                Last Name: <input type="text" id="lastName" name="lastName" /><br />
+                University: <input type="text" id="university" onkeydown="searchUniversities()" name="university" /><br />
+                <p id="universityResults"></p>
+                Department: <input type="text" id="department" name="department" /><br />
+
+                <input type="submit" value="Add" id="submit"/>
+            </form>
+        </p>
+    </body>
+</html>
