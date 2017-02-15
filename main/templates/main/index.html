@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Welcome to Rate My Lecturer</title>
+    </head>
+    <body>
+        {% if user.is_authenticated %}
+        <h1>Hello {{ user.username }}! You are logged in!</h1>
+        {% endif %}
+
+        <h1>Welcome to Rate My Lecturer</h1>
+
+        {% if user.is_authenticated %}
+        <a href="/log/logout/">Logout</a><br>
+        {% else %}
+        <a href="/log/signup/">Signup</a><br>
+        <a href="/log/login">Login</a>
+        {% endif %}
+    </body>
+</html>

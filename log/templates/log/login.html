@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login to Rate My Lecturer</title>
+    </head>
+
+    <body>
+        <h1>Login to Rate My Lecturer</h1>
+
+        {% if error_message %}
+        <p><b>{{ error_message }}</b></p>
+        {% endif %}
+
+        <form id="login_form" method="post" action="/log/login/">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+
+            <input type="submit" value="Submit" />
+        </form>
+
+    </body>
+</html>

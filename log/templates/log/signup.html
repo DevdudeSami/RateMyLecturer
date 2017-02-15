@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Signup for Rate My Lecturer</title>
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/SignupScript.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
+    </head>
+
+    <body onload="documentLoaded()">
+        <h1>Signup for Rate My Lecturer</h1>
+
+        {% if registered %}
+        <strong>Thank you for registering!</strong>
+        <a href="/log/login/">Login</a><br />
+        {% else %}
+        <form id="user_form" method="post" action="/log/signup/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+            <!-- Provide a button to click to submit the form. -->
+            <input id="submitButton" type="submit" name="submit" value="Sign Up" />
+        </form>
+        {% endif %}
+    </body>
+</html>
