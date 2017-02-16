@@ -4,9 +4,19 @@ from django.contrib.auth.models import User
 class University(models.Model):
     name = models.CharField(max_length=60, unique=True)
     short_name = models.CharField(max_length=30, null=True)
-    
+
     def __str__(self):
         return self.name
+
+class Department(models.Model):
+    name = models.CharField(max_length=60)
+    university = models.ForeignKey(University)
+
+    class Meta:
+        unique_together = ('name', 'university')
+
+    def __str__(self):
+        return self.name + " in " + self.university.name
 
 class Lecturer(models.Model):
     title = models.CharField(max_length=10)
@@ -14,7 +24,7 @@ class Lecturer(models.Model):
     last_name = models.CharField(max_length=30)
 
     university = models.ForeignKey(University)
-    department = models.CharField(max_length=50)
+    department = models.ForeignKey(Department)
 
     added_by = models.ForeignKey(User)
 

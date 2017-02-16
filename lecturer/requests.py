@@ -1,4 +1,4 @@
-from .models import University, Lecturer, Rating, Comment
+from .models import University, Lecturer, Rating, Comment, Department
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import loader
@@ -21,6 +21,27 @@ def searchUniversities(request):
 
         if result == "":
             result = "<p>No universities found.</p>"
+
+        return HttpResponse(result)
+
+    return HttpResponse(INV_REQ)
+
+@login_required
+def searchDepartments(request):
+    if request.method == 'POST':
+        university = University.objects.get(name=request.POST['university'])
+        searchTerm = request.POST['searchTerm']
+
+        departments = Department.objects.filter(name__startswith=searchTerm)
+
+        result = ""
+        template = loader.get_template('lecturer/departmentResult.html')
+
+        for department in departments:
+            result += template.render({'department': department}, request)
+
+        if result == "":
+            result = "<p>No departments found.</p>"
 
         return HttpResponse(result)
 
