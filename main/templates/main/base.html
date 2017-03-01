@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head lang="en">
+        <meta charset="utf-8"/>
+        <title>
+            {% block title_block %}
+                Rate My Lecturer
+            {% endblock %}
+        </title>
+
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/SearchLecturersScript.js' %}"></script>
+
+        {% block script_block %}
+        {% endblock %}
+
+        <style>
+            #searchLecturersBox {}
+            #searchLecturersResults {}
+        </style>
+    </head>
+    <body>
+        <!-- Page specific content goes here -->
+        {% block body_block %}
+            This is body_block's default content.
+        {% endblock %}
+        <hr />
+
+        Search for a lecturer: <input type="text" id="lecturer" onkeydown="searchLecturers()"/>
+        <div id="lecturerResults">
+
+        </div>
+
+        <hr />
+
+        <div>
+            <ul>
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'log:logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'log:signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'log:login' %}">Login</a></li>
+                {% endif %}
+                <li><a href="{% url 'main:index' %}">Index</a></li>
+            </ul>
+        </div>
+
+        <hr  />
+    </body>
+</html>

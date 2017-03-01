@@ -5,7 +5,8 @@ from .models import Lecturer, University, Department
 
 @login_required
 def lecturerPage(request, lecturer_id):
-    pass
+    lecturer = Lecturer.objects.get(pk=lecturer_id)
+    return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer})
 
 @login_required
 def searchForLecturer(request):
@@ -19,7 +20,7 @@ def addLecturer(request):
         lastName = request.POST['lastName']
 
         university = University.objects.get(name=request.POST['university'])
-        department = Department.objects.get(name=request.POST['department'])
+        department = Department.objects.get(name=request.POST['department'], university=university)
 
         lecturer = Lecturer(title=title, first_name=firstName, last_name=lastName, university=university, department=department, added_by=request.user)
         lecturer.save()

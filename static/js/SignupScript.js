@@ -1,11 +1,8 @@
 function documentLoaded() {
-    // Setup CSRF
-    setupCSRF();
-    
     // Setup some of the form elements
     $("#id_repeat_password").after("<p id=\"passwordDisplay\"></p>");
     $("#id_username").after("<p id=\"userDisplay\"></p>");
-    
+
     $("#id_username").keyup(checkUsername);
     $("#id_password").keyup(checkUsername);
     $("#id_repeat_password").keyup(checkUsername);
@@ -34,8 +31,8 @@ function checkUsername() {
         ajaxQueue.push(checkUsername);
         return;
     }
-    
-    isProcessing = true;    
+
+    isProcessing = true;
     if($('#id_username').val() != "") {
         $.ajax({
             type: 'post',
@@ -48,11 +45,11 @@ function checkUsername() {
 
 function checkUserCallback(data, textStatus, xhr) {
     nextAjaxRequest();
-    
+
 	if(data == "invalidRequest5987@@!#inv_req") {
         window.location.replace("/");
     }
-    
+
     var display = "";
 
     if ($('#id_username').val().indexOf(' ') !== -1) {

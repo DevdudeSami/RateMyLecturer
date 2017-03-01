@@ -1,25 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Login to Rate My Lecturer</title>
-    </head>
+{% extends 'main/base.html' %}
 
-    <body>
-        <h1>Login to Rate My Lecturer</h1>
+{% block title_block %}
+    Login to Rate My Lecturer
+{% endblock %}
 
-        {% if error_message %}
-        <p><b>{{ error_message }}</b></p>
-        {% endif %}
+{% block body_block %}
+    <h1>Login to Rate My Lecturer</h1>
 
-        <form id="login_form" method="post" action="/log/login/">
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
+    {% if error_message %}
+    <p><b>{{ error_message }}</b></p>
+    {% endif %}
 
-            <input type="submit" value="Submit" />
-        </form>
+    <form id="login_form" method="post" action="/log/login/">
+        {% csrf_token %}
+        Username: <input type="text" name="username" value="" size="50" />
+        <br />
+        Password: <input type="password" name="password" value="" size="50" />
+        <br />
 
-    </body>
-</html>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

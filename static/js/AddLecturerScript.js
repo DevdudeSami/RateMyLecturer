@@ -1,7 +1,3 @@
-$(document).ready(function() {
-    setupCSRF();
-});
-
 // 4 FUNCTIONS FOR HANDLING UNIS
 function searchUniversities() {
     if($("#university").val() == "") { return; }

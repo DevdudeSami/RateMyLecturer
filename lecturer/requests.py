@@ -32,7 +32,7 @@ def searchDepartments(request):
         university = University.objects.get(name=request.POST['university'])
         searchTerm = request.POST['searchTerm']
 
-        departments = Department.objects.filter(name__startswith=searchTerm)
+        departments = Department.objects.filter(name__startswith=searchTerm, university=university)
 
         result = ""
         template = loader.get_template('lecturer/departmentResult.html')
@@ -42,6 +42,25 @@ def searchDepartments(request):
 
         if result == "":
             result = "<p>No departments found.</p>"
+
+        return HttpResponse(result)
+
+    return HttpResponse(INV_REQ)
+
+def searchLecturers(request):
+    if request.method == 'POST':
+        searchTerm = request.POST['searchTerm']
+
+        lecturers = Lecturer.objects.filter(Q(first_name__startswith=searchTerm) | Q(last_name__startswith=searchTerm))
+
+        result = ""
+        template = loader.get_template('lecturer/lecturerResult.html')
+
+        for lecturer in lecturers:
+            result += template.render({'lecturer': lecturer}, request)
+
+        if result == "":
+            result = "<p>No lecturers found.</p>"
 
         return HttpResponse(result)
 

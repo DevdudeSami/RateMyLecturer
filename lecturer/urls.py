@@ -11,5 +11,6 @@ urlpatterns = [
     # requests
     url(r'^requests/searchUniversities$', requests.searchUniversities, name='searchUniversities'),
     url(r'^requests/searchDepartments$', requests.searchDepartments, name='searchDepartments'),
+    url(r'^requests/searchLecturers$', requests.searchLecturers, name='searchLecturers'),
 
 ]

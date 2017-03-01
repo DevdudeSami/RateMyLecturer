@@ -1,4 +1,37 @@
+{% extends 'main/base.html' %}
+
 {% load static %}
+
+{% block title_block %}
+    Add Lecturer
+{% endblock %}
+
+{% block script_block %}
+    <script src="{% static 'js/AddLecturerScript.js'%}"></script>
+{% endblock %}
+
+{% block body_block %}
+    <h1>Add Lecturer</h1>
+
+    <p>
+        <form name="addLecturerForm" action="/lecturer/add" method="post">
+            {% csrf_token %}
+
+            Title: <input type="text" id="title" name="title" /><br />
+            First Name: <input type="text" id="firstName" name="firstName" /><br />
+            Last Name: <input type="text" id="lastName" name="lastName" /><br />
+            University: <input type="text" id="university" onkeydown="searchUniversities()" name="university" /><br />
+            <p id="universityResults"></p>
+            Department: <input type="text" id="department" onkeydown="searchDepartments()" name="department" /><br />
+            <p id="departmentResults"></p>
+
+            <input type="submit" value="Add" id="submit"/>
+        </form>
+    </p>
+{% endblock %}
+
+
+<!-- {% load static %}
 
 <!DOCTYPE html>
 
@@ -29,4 +62,4 @@
             </form>
         </p>
     </body>
-</html>
+</html> -->

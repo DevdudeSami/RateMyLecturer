@@ -1,3 +1,7 @@
+$(document).ready(function() {
+    setupCSRF();
+});
+
 /**** CODE REQUIRED TO SEND THE CSRF TOKEN ****/
 function getCookie(name) {
     var cookieValue = null;
