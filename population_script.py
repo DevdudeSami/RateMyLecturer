@@ -35,9 +35,6 @@ for line in f:
     if lineCount == 3:
         Universities_Domains[name] = lineStripped
 
-for x in Universities_Departements:
-    print Universities_Departements[x]
-
 # Population script:
 
 def add_University(name, short_name, domain):
@@ -63,4 +60,3 @@ def populate():
 if __name__ == '__main__':
     print("Starting RateMyLecturer population script...")
     populate()
-
