@@ -65,3 +65,42 @@ def searchLecturers(request):
         return HttpResponse(result)
 
     return HttpResponse(INV_REQ)
+
+@login_required
+def rateLecturer(request):
+    if request.method == 'POST':
+        lecturer = Lecturer.objects.get(pk=request.POST['lecturerID'])
+        value = request.POST['value']
+
+        rating = Rating.objects.filter(user=request.user, lecturer=lecturer)
+        if rating.exists():
+            rating = rating[0]
+            rating.value = value
+        else:
+            rating = Rating(value=value, lecturer=lecturer, user=request.user)
+
+        rating.save()
+
+        return HttpResponse('')
+
+    return HttpResponse(INV_REQ)
+
+@login_required
+def getRatingForLecturer(request):
+    if request.method == 'POST':
+        lecturer = Lecturer.objects.get(pk=request.POST['lecturerID'])
+
+        rating = Rating.objects.filter(user=request.user, lecturer=lecturer)
+        if rating.exists():
+            return HttpResponse(rating[0].value)
+        return HttpResponse("NONE")
+
+    return HttpResponse(INV_REQ)
+
+def getAverageRating(request):
+    if request.method == 'POST':
+        lecturer = Lecturer.objects.get(pk=request.POST['lecturerID'])
+
+        return HttpResponse(lecturer.get_rating())
+
+    return HttpResponse(INV_REQ)

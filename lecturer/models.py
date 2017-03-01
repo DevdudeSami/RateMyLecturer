@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+from functools import reduce
+
 class University(models.Model):
     name = models.CharField(max_length=60, unique=True)
     short_name = models.CharField(max_length=30, null=True)
@@ -39,8 +41,8 @@ class Lecturer(models.Model):
 
     def get_rating(self):
         # Calculates the average rating
-        ratings = Ratings.objects.filter(lecturer=self)
-        total = reduce((lambda x,y: x+y), ratings)
+        ratings = Rating.objects.filter(lecturer=self)
+        total = reduce((lambda x,y: x+y), map(lambda r: r.value, ratings))
         return total/ratings.count()
 
 
@@ -51,7 +53,10 @@ class Rating(models.Model):
     date_rated = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return "Rating by " + self.user.username + " on " + self.lecturer
+        return "Rating by " + self.user.username + " on " + self.lecturer.__str__()
+
+    class Meta:
+        unique_together = ('user', 'lecturer')
 
 class Comment(models.Model):
     comment_text = models.TextField()

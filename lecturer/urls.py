@@ -12,5 +12,8 @@ urlpatterns = [
     url(r'^requests/searchUniversities$', requests.searchUniversities, name='searchUniversities'),
     url(r'^requests/searchDepartments$', requests.searchDepartments, name='searchDepartments'),
     url(r'^requests/searchLecturers$', requests.searchLecturers, name='searchLecturers'),
+    url(r'^requests/rateLecturer$', requests.rateLecturer, name='rateLecturer'),
+    url(r'^requests/getRatingForLecturer$', requests.getRatingForLecturer, name='getRatingForLecturer'),
+    url(r'^requests/getAverageRating$', requests.getAverageRating, name='getAverageRating'),
 
 ]

@@ -1,4 +1,4 @@
-function documentLoaded() {
+$(document).ready(function() {
     // Setup some of the form elements
     $("#id_repeat_password").after("<p id=\"passwordDisplay\"></p>");
     $("#id_username").after("<p id=\"userDisplay\"></p>");
@@ -6,7 +6,7 @@ function documentLoaded() {
     $("#id_username").keyup(checkUsername);
     $("#id_password").keyup(checkUsername);
     $("#id_repeat_password").keyup(checkUsername);
-}
+});
 
 function checkPasswords() {
     var password = $("#id_password").val();
