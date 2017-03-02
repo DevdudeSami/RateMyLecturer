@@ -43,7 +43,7 @@ class Lecturer(models.Model):
         # Calculates the average rating
         ratings = Rating.objects.filter(lecturer=self)
         if not ratings.exists(): return 0
-        
+
         total = reduce((lambda x,y: x+y), map(lambda r: r.value, ratings))
         return total/ratings.count()
 
@@ -67,7 +67,10 @@ class Comment(models.Model):
     date_commented = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return "Comment by " + self.user.username + " on " + self.lecturer
+        return "Comment by " + self.user.username + " on " + self.lecturer.__str__()
+
+    class Meta:
+        unique_together = ('user', 'lecturer')
 
 class CommentScore(models.Model):
     value = models.IntegerField()

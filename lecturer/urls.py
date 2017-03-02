@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^requests/rateLecturer$', requests.rateLecturer, name='rateLecturer'),
     url(r'^requests/getRatingForLecturer$', requests.getRatingForLecturer, name='getRatingForLecturer'),
     url(r'^requests/getAverageRating$', requests.getAverageRating, name='getAverageRating'),
+    url(r'^requests/addComment$', requests.addComment, name='addComment'),
+    url(r'^requests/getComments$', requests.getComments, name='getComments'),
 
 ]

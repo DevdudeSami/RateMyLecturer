@@ -4,7 +4,7 @@ from django.utils import timezone
 from lecturer.models import University
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, related_name='user_profile')
 
     picture = models.ImageField(upload_to='profile_images', blank=True)
     date_joined = models.DateTimeField(default=timezone.now)

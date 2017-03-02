@@ -6,7 +6,11 @@ from .models import Lecturer, University, Department
 @login_required
 def lecturerPage(request, lecturer_id):
     lecturer = Lecturer.objects.get(pk=lecturer_id)
-    return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer})
+
+    # Get whether user is in the university or not
+    userInUni = request.user.user_profile.university.name == lecturer.university.name
+
+    return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer, 'userInUni': userInUni})
 
 @login_required
 def searchForLecturer(request):

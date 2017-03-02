@@ -17,15 +17,6 @@
 {% endblock %}
 
 {% block body_block %}
-    <style>
-        /*.rateLecturerButton {
-            content:url("{% static 'img/star.png' %}");
-        }
-
-        .rateLecturerButton[disabled] {
-            content:url("{% static 'img/star-selected.png' %}");
-        }*/
-    </style>
 
     <h1>{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}</h1>
 
@@ -34,18 +25,28 @@
         Department: {{ lecturer.department.name }}
     </p>
 
+    {% if userInUni %}
     <p>
         Rate this lecturer:
 
         <!-- Using this to iterate a fixed number of times -->
         {% for i in "1234567890" %}
             <img src="{% static 'img/star.png' %}" width=25 class="rateLecturerButton" id="rateLecturerButton{{forloop.counter}}" onclick="rateLecturer({{forloop.counter}})">
-
-                <!-- {{forloop.counter}} -->
         {% endfor %}
     </p>
+    {% endif %}
 
     <p>
         Average rating: <span id="averageRating">{{ lecturer.get_rating }}</span>
     </p>
+
+    {% if userInUni %}
+    <p>
+        <textarea id="commentText"></textarea> <br />
+        <button onclick="addComment()">Comment</button>
+    </p>
+    {% endif %}
+
+    <div id="comments"></div>
+
 {% endblock %}

@@ -1,6 +1,7 @@
 $(document).ready(function() {
     getRating();
     getAverageRating();
+    getComments();
 });
 
 function rateLecturer(rating) {
@@ -27,6 +28,7 @@ function rateLecturerCallback(data) {
 
     getRating();
     getAverageRating();
+    getComments();
 }
 
 function getRating() {
@@ -83,4 +85,56 @@ function getAverageRatingCallback(data) {
     nextAjaxRequest();
 
     $("#averageRating").html(data);
+}
+
+function addComment() {
+    if(isProcessing) {
+        ajaxQueue.push(getComments);
+        return;
+    }
+
+    var commentText = $("#commentText").val();
+
+    isProcessing = true;
+    $.ajax({
+        type: 'post',
+        url: '/lecturer/requests/addComment',
+        data: {lecturerID: lecturerID, commentText: commentText},
+        success: addCommentCallback
+    });
+}
+
+function addCommentCallback(data) {
+    if(data == "invalidRequest5987@@!#inv_req") {
+        window.location.replace("/log/login");
+    }
+
+    nextAjaxRequest();
+
+    getComments();
+}
+
+function getComments() {
+    if(isProcessing) {
+        ajaxQueue.push(getComments);
+        return;
+    }
+
+    isProcessing = true;
+    $.ajax({
+        type: 'post',
+        url: '/lecturer/requests/getComments',
+        data: {lecturerID: lecturerID},
+        success: getCommentsCallback
+    });
+}
+
+function getCommentsCallback(data) {
+    if(data == "invalidRequest5987@@!#inv_req") {
+        window.location.replace("/log/login");
+    }
+
+    nextAjaxRequest();
+
+    $("#comments").html(data);
 }

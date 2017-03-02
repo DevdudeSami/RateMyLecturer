@@ -104,3 +104,37 @@ def getAverageRating(request):
         return HttpResponse(lecturer.get_rating())
 
     return HttpResponse(INV_REQ)
+
+@login_required
+def addComment(request):
+    if request.method == 'POST':
+        commentText = request.POST['commentText']
+        lecturer = Lecturer.objects.get(pk=request.POST['lecturerID'])
+
+        comment = Comment(comment_text=commentText, user=request.user, lecturer=lecturer)
+        comment.save()
+
+        return HttpResponse()
+
+    return HttpResponse(INV_REQ)
+
+def getComments(request):
+    if request.method == 'POST':
+        lecturer = Lecturer.objects.get(pk=request.POST['lecturerID'])
+
+        comments = Comment.objects.filter(lecturer=lecturer).order_by('-date_commented')
+
+        result = ""
+        template = loader.get_template('lecturer/comment.html')
+
+        for comment in comments:
+            rating = Rating.objects.get(user=comment.user, lecturer=comment.lecturer)
+
+            result += template.render({'comment': comment, 'rating': rating}, request)
+
+        if result == "":
+            result = "<p>No comments on this lecturer. Please be the first.</p>"
+
+        return HttpResponse(result)
+
+    return HttpResponse(INV_REQ)
