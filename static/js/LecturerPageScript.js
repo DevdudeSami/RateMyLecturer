@@ -52,12 +52,11 @@ function getRatingForLecturerCallback(data) {
     nextAjaxRequest();
 
     if(data != "NONE") {
-        // enable all then disable the one
-        for(var i = 1; i<=5; i++) {
-            $("#rateLecturerButton" + i).prop("disabled", false);
-        }
+        $(".rateLecturerButton").prop("src", starURL);
 
-        $("#rateLecturerButton" + data).prop("disabled", true);
+        for(var i=1; i<=data; i++) {
+            $("#rateLecturerButton" + i).prop("src", selectedStarURL);
+        }
     }
 }
 

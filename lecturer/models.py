@@ -42,6 +42,8 @@ class Lecturer(models.Model):
     def get_rating(self):
         # Calculates the average rating
         ratings = Rating.objects.filter(lecturer=self)
+        if not ratings.exists(): return 0
+        
         total = reduce((lambda x,y: x+y), map(lambda r: r.value, ratings))
         return total/ratings.count()
 

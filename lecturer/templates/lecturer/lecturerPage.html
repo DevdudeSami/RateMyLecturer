@@ -9,6 +9,8 @@
 {% block script_block %}
     <script>
         var lecturerID = {{ lecturer.id }};
+        var starURL = "{% static 'img/star.png' %}";
+        var selectedStarURL = "{% static 'img/star-selected.png' %}";
     </script>
 
     <script src="{% static 'js/LecturerPageScript.js' %}"></script>
@@ -16,20 +18,31 @@
 
 {% block body_block %}
     <style>
-        .rateLecturerButton[disabled] {
-            background-color: yellow;
+        /*.rateLecturerButton {
+            content:url("{% static 'img/star.png' %}");
         }
+
+        .rateLecturerButton[disabled] {
+            content:url("{% static 'img/star-selected.png' %}");
+        }*/
     </style>
 
     <h1>{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}</h1>
 
     <p>
+        University: {{ lecturer.university }} <br />
+        Department: {{ lecturer.department.name }}
+    </p>
+
+    <p>
         Rate this lecturer:
-        <button class="rateLecturerButton" id="rateLecturerButton1" onclick="rateLecturer(1)">1</button>
-        <button class="rateLecturerButton" id="rateLecturerButton2" onclick="rateLecturer(2)">2</button>
-        <button class="rateLecturerButton" id="rateLecturerButton3" onclick="rateLecturer(3)">3</button>
-        <button class="rateLecturerButton" id="rateLecturerButton4" onclick="rateLecturer(4)">4</button>
-        <button class="rateLecturerButton" id="rateLecturerButton5" onclick="rateLecturer(5)">5</button>
+
+        <!-- Using this to iterate a fixed number of times -->
+        {% for i in "1234567890" %}
+            <img src="{% static 'img/star.png' %}" width=25 class="rateLecturerButton" id="rateLecturerButton{{forloop.counter}}" onclick="rateLecturer({{forloop.counter}})">
+
+                <!-- {{forloop.counter}} -->
+        {% endfor %}
     </p>
 
     <p>
