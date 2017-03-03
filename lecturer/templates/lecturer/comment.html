@@ -1,8 +1,21 @@
-<p class="comment">
+<div {% if comment.user.id == user.id %} id="userComment" {% endif %} class="comment">
     <b>{{ comment.user.username }}</b> said:
-    <blockquote>
+    <blockquote {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
         {{ comment.comment_text }}
     </blockquote>
     on <i>{{ comment.date_commented }}</i> and gave a rating of {{ rating.value }}.
 
-</p>
+    {% if comment.user.id == user.id %}
+        <button onclick="editComment()">Edit Comment</button>
+        <button onclick="deleteComment({{comment.id}})">Delete Comment</button>
+    {% endif %}
+</div>
+
+{% if comment.user.id == user.id %}
+<div id="editCommentDiv" hidden="true">
+    Edit your comment: <br />
+    <textarea id="commentText"></textarea> <br />
+    <button onclick="addComment()">Finish Editting Comment</button>
+    <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously
+</div>
+{% endif %}

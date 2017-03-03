@@ -52,7 +52,7 @@ class Rating(models.Model):
     value = models.IntegerField(default=0)
     user = models.ForeignKey(User)
     lecturer = models.ForeignKey(Lecturer)
-    date_rated = models.DateTimeField(default=timezone.now)
+    date_rated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "Rating by " + self.user.username + " on " + self.lecturer.__str__()
@@ -64,7 +64,8 @@ class Comment(models.Model):
     comment_text = models.TextField()
     user = models.ForeignKey(User)
     lecturer = models.ForeignKey(Lecturer)
-    date_commented = models.DateTimeField(default=timezone.now)
+    date_commented = models.DateTimeField(auto_now=True)
+    is_anonymous = models.IntegerField(default=0)
 
     def __str__(self):
         return "Comment by " + self.user.username + " on " + self.lecturer.__str__()

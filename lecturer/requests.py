@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 from django.db.models import Q
+from django.utils import timezone
 
 INV_REQ = "invalidRequest5987@@!#inv_req"
 
@@ -111,7 +112,16 @@ def addComment(request):
         commentText = request.POST['commentText']
         lecturer = Lecturer.objects.get(pk=request.POST['lecturerID'])
 
-        comment = Comment(comment_text=commentText, user=request.user, lecturer=lecturer)
+        comment = Comment.objects.filter(user=request.user, lecturer=lecturer)
+        if comment.exists():
+            comment = comment[0]
+            comment.comment_text = commentText
+        else:
+            comment = Comment(comment_text=commentText, user=request.user, lecturer=lecturer)
+
+        if request.POST['isAnonymous']:
+            comment.is_anonymous = 1
+
         comment.save()
 
         return HttpResponse()
@@ -136,5 +146,14 @@ def getComments(request):
             result = "<p>No comments on this lecturer. Please be the first.</p>"
 
         return HttpResponse(result)
+
+    return HttpResponse(INV_REQ)
+
+def deleteComment(request):
+    if request.method == 'POST':
+        comment = Comment.objects.get(pk=request.POST['commentID'])
+        comment.delete()
+
+        return HttpResponse()
 
     return HttpResponse(INV_REQ)

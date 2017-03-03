@@ -1,8 +1,12 @@
 $(document).ready(function() {
+    getEverything();
+});
+
+function getEverything() {
     getRating();
     getAverageRating();
     getComments();
-});
+}
 
 function rateLecturer(rating) {
     if(isProcessing) {
@@ -26,9 +30,7 @@ function rateLecturerCallback(data) {
 
     nextAjaxRequest();
 
-    getRating();
-    getAverageRating();
-    getComments();
+    getEverything();
 }
 
 function getRating() {
@@ -94,12 +96,13 @@ function addComment() {
     }
 
     var commentText = $("#commentText").val();
+    var anonymously = $("#anonymousCheck").checked;
 
     isProcessing = true;
     $.ajax({
         type: 'post',
         url: '/lecturer/requests/addComment',
-        data: {lecturerID: lecturerID, commentText: commentText},
+        data: {lecturerID: lecturerID, commentText: commentText, isAnonymous: anonymously},
         success: addCommentCallback
     });
 }
@@ -111,7 +114,9 @@ function addCommentCallback(data) {
 
     nextAjaxRequest();
 
-    getComments();
+    $("#addCommentArea").prop("hidden", true);
+
+    getEverything();
 }
 
 function getComments() {
@@ -137,4 +142,39 @@ function getCommentsCallback(data) {
     nextAjaxRequest();
 
     $("#comments").html(data);
+}
+
+function editComment() {
+    var commentText = $("#userCommentText").html();
+    $("#userComment").prop("hidden", true);
+    $("#editCommentDiv").prop("hidden", false);
+    $("#commentText").val(commentText.trim());
+    $("#commentText").focus();
+}
+
+function deleteComment(commentID) {
+    if(isProcessing) {
+        ajaxQueue.push({withArgs: true, call: deleteComment, args: [commentID]});
+        return;
+    }
+
+    isProcessing = true;
+    $.ajax({
+        type: 'post',
+        url: '/lecturer/requests/deleteComment',
+        data: {commentID: commentID},
+        success: deleteCommentCallback
+    });
+}
+
+function deleteCommentCallback(data) {
+    if(data == "invalidRequest5987@@!#inv_req") {
+        window.location.replace("/log/login");
+    }
+
+    nextAjaxRequest();
+
+    $("#addCommentArea").prop("hidden", false);
+
+    getEverything();
 }
