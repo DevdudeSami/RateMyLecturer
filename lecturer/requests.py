@@ -119,8 +119,11 @@ def addComment(request):
         else:
             comment = Comment(comment_text=commentText, user=request.user, lecturer=lecturer)
 
-        if request.POST['isAnonymous']:
+        print(request.POST)
+        if request.POST['isAnonymous'] == 'true':
             comment.is_anonymous = 1
+        else:
+            comment.is_anonymous = 0
 
         comment.save()
 

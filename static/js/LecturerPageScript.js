@@ -96,7 +96,7 @@ function addComment() {
     }
 
     var commentText = $("#commentText").val();
-    var anonymously = $("#anonymousCheck").checked;
+    var anonymously = $("#anonymousCheck").is(':checked');
 
     isProcessing = true;
     $.ajax({
@@ -115,6 +115,8 @@ function addCommentCallback(data) {
     nextAjaxRequest();
 
     $("#addCommentArea").prop("hidden", true);
+    $("#addCommentArea").find("#commentText").prop('id', "commentText-hidden");
+    $("#addCommentArea").find("#anonymousCheck").prop('id', "anonymousCheck-hidden");
 
     getEverything();
 }
@@ -175,6 +177,8 @@ function deleteCommentCallback(data) {
     nextAjaxRequest();
 
     $("#addCommentArea").prop("hidden", false);
+    $("#addCommentArea").find("#commentText-hidden").prop('id', "commentText");
+    $("#addCommentArea").find("#anonymousCheck-hidden").prop('id', "anonymousCheck");
 
     getEverything();
 }

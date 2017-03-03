@@ -1,5 +1,10 @@
 <div {% if comment.user.id == user.id %} id="userComment" {% endif %} class="comment">
-    <b>{{ comment.user.username }}</b> said:
+    {% if comment.is_anonymous == 0 %}
+        <b>{{ comment.user.username }}</b>
+    {% else %}
+        <b>Anonymous commenter</b>
+    {% endif %}
+    said:
     <blockquote {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
         {{ comment.comment_text }}
     </blockquote>
@@ -15,7 +20,8 @@
 <div id="editCommentDiv" hidden="true">
     Edit your comment: <br />
     <textarea id="commentText"></textarea> <br />
-    <button onclick="addComment()">Finish Editting Comment</button>
-    <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously
+    <button onclick="addComment()">Finish Editing Comment</button>
+    <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously <br />
+    <button onclick="getComments()">Cancel</button>
 </div>
 {% endif %}
