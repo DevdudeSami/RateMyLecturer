@@ -42,9 +42,9 @@
 
     {% if userInUni %}
     <p id="addCommentArea" {% if userCommented %} hidden="true" {% endif %}>
-        <textarea id="commentText"></textarea> <br />
+        <textarea id="commentText{% if userCommented %}-hidden{% endif %}"></textarea> <br />
         <button onclick="addComment()">Comment</button>
-        <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously
+        <input type="checkbox" value="Submit Anonymously" id="anonymousCheck{% if userCommented %}-hidden{% endif %}" /> Submit Anonymously
     </p>
     {% endif %}
 

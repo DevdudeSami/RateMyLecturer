@@ -152,6 +152,7 @@ def getComments(request):
 
     return HttpResponse(INV_REQ)
 
+@login_required
 def deleteComment(request):
     if request.method == 'POST':
         comment = Comment.objects.get(pk=request.POST['commentID'])
