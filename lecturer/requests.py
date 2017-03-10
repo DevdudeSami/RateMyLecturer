@@ -1,4 +1,4 @@
-from .models import University, Lecturer, Rating, Comment, Department
+from .models import University, Lecturer, Rating, Comment, Department, CommentScore
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.template import loader
@@ -119,7 +119,6 @@ def addComment(request):
         else:
             comment = Comment(comment_text=commentText, user=request.user, lecturer=lecturer)
 
-        print(request.POST)
         if request.POST['isAnonymous'] == 'true':
             comment.is_anonymous = 1
         else:
@@ -141,9 +140,14 @@ def getComments(request):
         template = loader.get_template('lecturer/comment.html')
 
         for comment in comments:
-            rating = Rating.objects.get(user=comment.user, lecturer=comment.lecturer)
+            rating = Rating.objects.filter(user=comment.user, lecturer=comment.lecturer)
 
-            result += template.render({'comment': comment, 'rating': rating}, request)
+            context = {'comment': comment, 'userScore': comment.getUserScore(request.user.id)}
+
+            if rating.exists():
+                context['rating'] = rating[0]
+
+            result += template.render(context, request)
 
         if result == "":
             result = "<p>No comments on this lecturer. Please be the first.</p>"
@@ -161,3 +165,26 @@ def deleteComment(request):
         return HttpResponse()
 
     return HttpResponse(INV_REQ)
+
+@login_required
+def changeScoreForComment(request):
+    if request.method == 'POST':
+        user = request.user
+        comment = Comment.objects.get(pk=request.POST['comment_id'])
+        value = request.POST['value']
+        print(value)
+        if value == "CLEAR":
+            CommentScore.objects.get(user=user, comment=comment).delete()
+            return HttpResponse("")
+
+        if CommentScore.objects.filter(user=user, comment=comment).count() > 0:
+            score = CommentScore.objects.get(user=user, comment=comment)
+            score.value = value
+            score.save()
+        else:
+            score = CommentScore(user=user, comment=comment, value=value)
+            score.save()
+
+        return HttpResponse("")
+    else:
+        return HttpResponse(INV_REQ)

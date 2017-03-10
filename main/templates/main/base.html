@@ -42,6 +42,7 @@
             <ul>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'log:logout' %}">Logout</a></li>
+                    <li><a href="{% url 'lecturer:add' %}">Add Lecturer</a></li>
                 {% else %}
                     <li><a href="{% url 'log:signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'log:login' %}">Login</a></li>

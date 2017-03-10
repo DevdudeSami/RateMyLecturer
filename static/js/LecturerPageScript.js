@@ -1,3 +1,5 @@
+var scoresScriptDelegate = {scoresChangeCallback: getComments};
+
 $(document).ready(function() {
     getEverything();
 });

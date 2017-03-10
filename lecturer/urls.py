@@ -5,7 +5,7 @@ from . import requests
 urlpatterns = [
     url(r'^$', views.searchForLecturer, name='searchForLecturer'),
     url(r'^search$', views.searchForLecturer, name='searchForLecturer'),
-    url(r'^add$', views.addLecturer, name='addLecturer'),
+    url(r'^add$', views.addLecturer, name='add'),
     url(r'^(?P<lecturer_id>[0-9]+)/$', views.lecturerPage, name='lecturerPage'),
 
     # requests
@@ -18,5 +18,6 @@ urlpatterns = [
     url(r'^requests/addComment$', requests.addComment, name='addComment'),
     url(r'^requests/getComments$', requests.getComments, name='getComments'),
     url(r'^requests/deleteComment$', requests.deleteComment, name='deleteComment'),
+    url(r'^requests/changeScoreForComment$', requests.changeScoreForComment, name='changeScoreForComment'),
 
 ]

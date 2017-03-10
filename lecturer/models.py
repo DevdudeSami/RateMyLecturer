@@ -70,6 +70,23 @@ class Comment(models.Model):
     def __str__(self):
         return "Comment by " + self.user.username + " on " + self.lecturer.__str__()
 
+    def score(self):
+        scores = CommentScore.objects.filter(comment=self)
+
+        if scores.exists():
+            total = reduce((lambda x,y: x+y), map(lambda r: r.value, scores))
+            return total
+        else:
+            return 0
+
+    def getUserScore(self, user_id):
+        # Returns 1 for up, 0 for none or -1 for down
+        user = User.objects.get(pk=user_id)
+        if user.id in CommentScore.objects.filter(comment=self).values_list('user', flat=True):
+            return 1 if (CommentScore.objects.get(comment=self, user=user).value == 1) else -1
+        else:
+            return 0
+
     class Meta:
         unique_together = ('user', 'lecturer')
 
@@ -80,4 +97,4 @@ class CommentScore(models.Model):
     date_scored = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return "Score on comment: \n\n" + self.comment.comment_text + "\n\n by " + self.user.username
+        return ("Up" if (self.value == 1) else "Down") + " score, by " + self.user.username + " on " + self.comment.comment_text

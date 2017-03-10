@@ -3,17 +3,42 @@
         <b>{{ comment.user.username }}</b>
     {% else %}
         <b>Anonymous commenter</b>
-    {% endif %}
+    {% endif %} <i>[{{comment.user.user_profile.score}}]</i>
     said:
     <blockquote {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
         {{ comment.comment_text }}
     </blockquote>
-    on <i>{{ comment.date_commented }}</i> and gave a rating of {{ rating.value }}.
+    on <i>{{ comment.date_commented }}</i> {% if rating %} and gave a rating of {{ rating.value }}.{% endif %}
 
     {% if comment.user.id == user.id %}
         <button onclick="editComment()">Edit Comment</button>
         <button onclick="deleteComment({{comment.id}})">Delete Comment</button>
     {% endif %}
+    <br />
+    <span class="scoreContainer"><i>Score: </i>
+
+        <button onclick="
+                         {% if userScore == 1 %}
+                            clearScore({{ comment.id }})
+                         {% else %}
+                            scoreUp({{ comment.id }})
+                         {% endif %}
+                         ">
+        {% if userScore == 1 %} Clear {% else %} Up {% endif %}
+        </button>&emsp;
+        <span class="score">{{ comment.score }}</span>
+        &emsp;<button onclick="
+                         {% if userScore == -1 %}
+                            clearScore({{ comment.id }})
+                         {% else %}
+                            scoreDown({{ comment.id }})
+                         {% endif %}
+                         ">
+        {% if userScore == -1 %} Clear {% else %} Down {% endif %}
+        </button>
+
+    </span><br>
+    <br /><br />
 </div>
 
 {% if comment.user.id == user.id %}
