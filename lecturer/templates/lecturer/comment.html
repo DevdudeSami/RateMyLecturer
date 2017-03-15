@@ -24,7 +24,11 @@
                             scoreUp({{ comment.id }})
                          {% endif %}
                          ">
-        {% if userScore == 1 %} Clear {% else %} Up {% endif %}
+        {% if userScore == 1 %} 
+			<span class="glyphicon glyphicon-remove-circle"></span> 	
+		{% else %} 
+			<span class="glyphicon glyphicon-thumbs-up"></span> 
+		{% endif %}
         </button>&emsp;
         <span class="score">{{ comment.score }}</span>
         &emsp;<button onclick="
@@ -34,7 +38,11 @@
                             scoreDown({{ comment.id }})
                          {% endif %}
                          ">
-        {% if userScore == -1 %} Clear {% else %} Down {% endif %}
+        {% if userScore == -1 %} 
+			<span class="glyphicon glyphicon-remove-circle"></span>
+		{% else %} 
+			<span class="glyphicon glyphicon-thumbs-down"></span> 
+		{% endif %}
         </button>
 
     </span><br>
