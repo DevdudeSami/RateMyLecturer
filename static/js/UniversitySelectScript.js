@@ -22,5 +22,7 @@ function universitiesGottenCallback(data) {
 }
 
 function universitiesSelectChanged() {
-    window.location.replace("/lecturer/universityPage/" + $("#universitiesSelect option:selected").val());
+    if($("#universitiesSelect option:selected").val() != "NONE") {
+        window.location.replace("/lecturer/universityPage/" + $("#universitiesSelect option:selected").val());
+    }
 }

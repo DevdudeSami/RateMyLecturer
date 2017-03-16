@@ -6,7 +6,7 @@ def getAllUniversitiesAsOptions(request):
     if request.method == 'POST':
         universities = University.objects.all()
 
-        result = ""
+        result = "<option value=\"NONE\">Select university...</option>"
         for university in universities:
             result += "<option value=\""+str(university.id)+"\""+">"+university.name+"</option>"
 
