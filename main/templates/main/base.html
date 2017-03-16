@@ -17,6 +17,7 @@
         <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
 
         <script type="text/javascript" src="{% static 'js/SearchLecturersScript.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/UniversitySelectScript.js' %}"></script>
 
         {% block script_block %}
         {% endblock %}
@@ -53,6 +54,8 @@
 					</ul>
 					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
+                            <select id="universitiesSelect" onchange="universitiesSelectChanged()">
+                            </select>
 							<input type="text" class="form-control" id="lecturer"
 								onkeyup="searchLecturers()" placeholder="Lecturer Search">
 						</div>

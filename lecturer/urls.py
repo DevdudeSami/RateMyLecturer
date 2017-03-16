@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^search$', views.searchForLecturer, name='searchForLecturer'),
     url(r'^add$', views.addLecturer, name='add'),
     url(r'^(?P<lecturer_id>[0-9]+)/$', views.lecturerPage, name='lecturerPage'),
+    url(r'^universityPage/(?P<university_id>[0-9]+)/$', views.universityPage, name='universityPage'),
 
     # requests
     url(r'^requests/searchUniversities$', requests.searchUniversities, name='searchUniversities'),

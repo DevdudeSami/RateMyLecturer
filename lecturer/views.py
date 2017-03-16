@@ -17,6 +17,13 @@ def lecturerPage(request, lecturer_id):
     else:
         return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer})
 
+def universityPage(request, university_id):
+    university = University.objects.get(pk=university_id)
+
+    lecturers = Lecturer.objects.filter(university=university)
+
+    return render(request, 'lecturer/universityPage.html', {'university': university, 'lecturers': lecturers})
+
 @login_required
 def searchForLecturer(request):
     pass
