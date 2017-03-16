@@ -53,6 +53,8 @@ def searchLecturers(request):
         searchTerm = request.POST['searchTerm']
 
         lecturers = Lecturer.objects.filter(Q(first_name__startswith=searchTerm) | Q(last_name__startswith=searchTerm))
+        if searchTerm == " ":
+            lecturers = Lecturer.objects.all()
 
         result = ""
         template = loader.get_template('lecturer/lecturerResult.html')

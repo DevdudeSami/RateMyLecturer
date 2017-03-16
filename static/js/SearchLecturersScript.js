@@ -1,5 +1,8 @@
 function searchLecturers() {
-    if($("#lecturer").val() == "") { return; }
+    if($("#lecturer").val() == "") {
+        $("#lecturerResults").html("");
+        return;
+    }
 
     if(isProcessing) {
         ajaxQueue.push(searchLecturers);

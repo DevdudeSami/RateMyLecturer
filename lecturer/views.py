@@ -3,17 +3,19 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Lecturer, University, Department, Comment
 
-@login_required
 def lecturerPage(request, lecturer_id):
     lecturer = Lecturer.objects.get(pk=lecturer_id)
 
-    # Get whether user is in the university or not
-    userInUni = request.user.user_profile.university.name == lecturer.university.name
+    if request.user.is_authenticated:
+        # Get whether user is in the university or not
+        userInUni = request.user.user_profile.university.name == lecturer.university.name
 
-    # Get whether user has commented on the lecturer
-    userCommented = Comment.objects.filter(user=request.user, lecturer=lecturer).exists()
+        # Get whether user has commented on the lecturer
+        userCommented = Comment.objects.filter(user=request.user, lecturer=lecturer).exists()
 
-    return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer, 'userInUni': userInUni, 'userCommented': userCommented})
+        return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer, 'userInUni': userInUni, 'userCommented': userCommented})
+    else:
+        return render(request, 'lecturer/lecturerPage.html', {'lecturer': lecturer})
 
 @login_required
 def searchForLecturer(request):

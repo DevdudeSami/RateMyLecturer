@@ -9,7 +9,7 @@
                 Rate My Lecturer
             {% endblock %}
         </title>
-		
+
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
@@ -32,14 +32,14 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
 						data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						
+
 						<span class="sr-only"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				
+
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 							<li class="active"><a href="{% url 'main:index' %}">Home</a></li>
@@ -54,12 +54,12 @@
 					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
 							<input type="text" class="form-control" id="lecturer"
-								onkeydown="searchLecturers()" placeholder="Lecturer Search">
+								onkeyup="searchLecturers()" placeholder="Lecturer Search">
 						</div>
 					</form>
 				</div>
 			</nav>
-			
+
 			<div class="jumbotron">
 				<div id="lecturerResults">
 				</div>
@@ -71,7 +71,7 @@
 				</div>
 			</div>
 		</div> <!--  Closes Container -->
-		
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </body>

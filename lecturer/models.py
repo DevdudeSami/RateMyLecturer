@@ -9,6 +9,13 @@ class University(models.Model):
     short_name = models.CharField(max_length=30, null=True)
     domain = models.CharField(max_length=30)
 
+    def get_rating(self):
+        lecturers = Lecturer.objects.filter(university=self)
+        if not lecturers.exists(): return 0
+        
+        total = reduce((lambda x,y: x+y), map(lambda r: r.get_rating(), lecturers))
+        return total/lecturers.count()
+
     def __str__(self):
         return self.name
 
