@@ -19,10 +19,9 @@ def lecturerPage(request, lecturer_id):
 
 def universityPage(request, university_id):
     university = University.objects.get(pk=university_id)
+    departments = Department.objects.filter(university=university)
 
-    lecturers = Lecturer.objects.filter(university=university)
-
-    return render(request, 'lecturer/universityPage.html', {'university': university, 'lecturers': lecturers})
+    return render(request, 'lecturer/universityPage.html', {'university': university, 'departments': departments})
 
 @login_required
 def searchForLecturer(request):

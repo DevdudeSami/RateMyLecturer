@@ -12,7 +12,7 @@ class University(models.Model):
     def get_rating(self):
         lecturers = Lecturer.objects.filter(university=self)
         if not lecturers.exists(): return 0
-        
+
         total = reduce((lambda x,y: x+y), map(lambda r: r.get_rating(), lecturers))
         return total/lecturers.count()
 
@@ -28,6 +28,9 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name + " in " + self.university.name
+
+    def get_lecturers(self):
+        return Lecturer.objects.filter(department=self)
 
 class Lecturer(models.Model):
     title = models.CharField(max_length=10)
