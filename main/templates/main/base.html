@@ -54,18 +54,25 @@
 					</ul>
 					<form class="navbar-form navbar-right" role="search">
 						<div class="form-group">
-                            <select id="universitiesSelect" onchange="universitiesSelectChanged()">
+                            <select class="form-control" id="universitiesSelect" onchange="universitiesSelectChanged()">
                             </select>
+							OR
 							<input type="text" class="form-control" id="lecturer"
 								onkeyup="searchLecturers()" placeholder="Lecturer Search">
 						</div>
 					</form>
 				</div>
 			</nav>
-
-			<div class="jumbotron">
+			<!-- {% if empty %} -->
+			<!-- <div class="jumbotron hidden"> -->
+			<!-- {% else %} -->
+			<div class="jumbotron"> 
+			<!-- {% endif %} -->
 				<div id="lecturerResults">
 				</div>
+			</div>
+
+			<div class="jumbotron">
 				<div>
 				<!-- Page specific content goes here -->
 				{% block body_block %}
