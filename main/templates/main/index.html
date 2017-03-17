@@ -7,10 +7,10 @@
 {% block body_block %}
 
     {% if user.is_authenticated %}
-    <h1>Hello {{ user.username }}! You are logged in!</h1>
+		<h2 class="text-center">Hello {{ user.username }}, Welcome to Rate My Lecturer</h2> <br>
+	{% else %}
+		<h2 class="text-center">Welcome to Rate My Lecturer</h2> <br>
     {% endif %}
-
-    <h1 class="text-center">Welcome to Rate My Lecturer</h1>
 
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -19,7 +19,7 @@
 				<table class="table text-center table-hover">
                     {% for lecturer in lecturers %}
                     <tr>
-						<td><a style="color: blue; text-decoration: underline;" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
+						<td><a id="link" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
 						<td> {{lecturer.get_rating}} </td>
 					</tr>
                     {% endfor %}
@@ -32,7 +32,7 @@
 				<table class="table text-center table-hover">
                     {% for university in universities %}
 					<tr>
-						<td><a style="color: blue; text-decoration: underline;" href="/lecturer/universityPage/{{university.id}}">{{university.name}}</a></td>
+						<td><a id="link" href="/lecturer/universityPage/{{university.id}}">{{university.name}}</a></td>
 						<td> {{university.get_rating}} </td>
 					</tr>
                     {% endfor %}
