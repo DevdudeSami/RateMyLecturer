@@ -11,7 +11,6 @@
         </title>
 
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="base.css">
 		
         <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
@@ -64,14 +63,22 @@
 				</div>
 			</nav>
 			
-			<div class="jumbotron" id="lecturerResults">
-				This should be hidden when nothing is searched, but i havo no idea how to achieve this.
-				Something, something make not hidden when something typed into search bar
-			</div>
+			<div class="jumbotron" id="lecturerResults" style="display:none"></div>
+			
+			<script>
+			
+			if($("#lecturer").val() != ""){
+			$("#lecturerResults").slideDown('slow');
+			}
+			else {
+			$("#lecturerResults").slideUp('slow');
+			}
+			
+			</script>
 			
 			<div class="jumbotron">
 				<div>
-				<!-- Page specific content goes here -->
+				<!-- Page specific content goes here      if($("#lecturer").val()){      -->
 				{% block body_block %}
 					This is body_block's default content.
 				{% endblock %}
