@@ -31,7 +31,7 @@ student.edi.ac.uk
 University of Aberdeen;Aberdeen
 Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
 student.abe.ac.uk
-University of St Andrews;St Andrews
+University of St Andrews;StAndrews
 Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
 student.and.ac.uk
 University of Manchester;Manchester
