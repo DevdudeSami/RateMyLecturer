@@ -144,7 +144,10 @@ def getComments(request):
         for comment in comments:
             rating = Rating.objects.filter(user=comment.user, lecturer=comment.lecturer)
 
-            context = {'comment': comment, 'userScore': comment.getUserScore(request.user.id)}
+            context = {'comment': comment}
+            
+            if request.user.is_authenticated:
+                context['userScore'] = comment.getUserScore(request.user.id)
 
             if rating.exists():
                 context['rating'] = rating[0]

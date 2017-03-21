@@ -16,7 +16,7 @@
     {% endif %}
     <br />
     <span class="scoreContainer"><i>Score: </i>
-
+        {% if user.is_authenticated %}
         <button onclick="
                          {% if userScore == 1 %}
                             clearScore({{ comment.id }})
@@ -24,10 +24,10 @@
                             scoreUp({{ comment.id }})
                          {% endif %}
                          ">
-        {% if userScore == 1 %} 
-			<span class="glyphicon glyphicon-remove-circle"></span> 	
-		{% else %} 
-			<span class="glyphicon glyphicon-thumbs-up"></span> 
+        {% if userScore == 1 %}
+			<span class="glyphicon glyphicon-remove-circle"></span>
+		{% else %}
+			<span class="glyphicon glyphicon-thumbs-up"></span>
 		{% endif %}
         </button>&emsp;
         <span class="score">{{ comment.score }}</span>
@@ -38,14 +38,17 @@
                             scoreDown({{ comment.id }})
                          {% endif %}
                          ">
-        {% if userScore == -1 %} 
+        {% if userScore == -1 %}
 			<span class="glyphicon glyphicon-remove-circle"></span>
-		{% else %} 
-			<span class="glyphicon glyphicon-thumbs-down"></span> 
+		{% else %}
+			<span class="glyphicon glyphicon-thumbs-down"></span>
 		{% endif %}
         </button>
-
-    </span><br>
+        {% else %}
+        {{ comment.score }}
+        {% endif %}
+    </span>
+    <br>
     <br /><br />
 </div>
 

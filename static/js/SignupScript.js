@@ -118,5 +118,6 @@ function recievedUniversityDomain(domain) {
         display = "<b style=\"color: red;\">Please enter a valid email address.</b>";
     }
 
+    universityCorrect = true;
     $("#universityDisplay").html(display);
 }
