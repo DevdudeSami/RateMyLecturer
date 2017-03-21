@@ -11,7 +11,7 @@
         </title>
 
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-		
+
         <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
@@ -21,11 +21,6 @@
 
         {% block script_block %}
         {% endblock %}
-
-        <style>
-            #searchLecturersBox {}
-            #searchLecturersResults {}
-        </style>
     </head>
     <body>
 		<div class="container">
@@ -62,20 +57,9 @@
 					</form>
 				</div>
 			</nav>
-			
+
 			<div class="jumbotron" id="lecturerResults" style="display:none"></div>
-			
-			<script>
-			
-			if($("#lecturer").val() != ""){
-			$("#lecturerResults").slideDown('slow');
-			}
-			else {
-			$("#lecturerResults").slideUp('slow');
-			}
-			
-			</script>
-			
+
 			<div class="jumbotron">
 				<div>
 				<!-- Page specific content goes here      if($("#lecturer").val()){      -->
@@ -84,7 +68,7 @@
 				{% endblock %}
 				</div>
 			</div>
-			
+
 			<div class ="jumbotron footer">
 				A footer, becasue why not
 			</div>

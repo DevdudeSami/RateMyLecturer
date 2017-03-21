@@ -1,7 +1,10 @@
 function searchLecturers() {
-    if($("#lecturer").val() == "") {
-        $("#lecturerResults").html("");
+    if($("#lecturer").val() == ""){
+        $("#lecturerResults").slideUp('slow').then(function() { $("#lecturerResults").html(""); });
         return;
+    }
+    else {
+        $("#lecturerResults").slideDown('slow');
     }
 
     if(isProcessing) {
@@ -25,5 +28,10 @@ function searchLecturersCallback(data) {
 
     nextAjaxRequest();
 
-    $("#lecturerResults").html(data);
+    $("#lecturerResults").html("<h2>Search Results</h2><button onclick=\"clearSearch()\">Clear</button><br>" + data);
+}
+
+function clearSearch() {
+    $("#lecturer").val("");
+    $("#lecturerResults").slideUp('slow').then(function() { $("#lecturerResults").html(""); });
 }
