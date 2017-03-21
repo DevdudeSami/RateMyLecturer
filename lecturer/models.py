@@ -14,7 +14,7 @@ class University(models.Model):
         if not lecturers.exists(): return 0
 
         total = reduce((lambda x,y: x+y), map(lambda r: r.get_rating(), lecturers))
-        return total/lecturers.count()
+        return float(format(total/lecturers.count(), '.2f'))
 
     def __str__(self):
         return self.name
@@ -55,7 +55,7 @@ class Lecturer(models.Model):
         if not ratings.exists(): return 0
 
         total = reduce((lambda x,y: x+y), map(lambda r: r.value, ratings))
-        return total/ratings.count()
+        return float(format(total/ratings.count(), '.2f'))
 
 
 class Rating(models.Model):

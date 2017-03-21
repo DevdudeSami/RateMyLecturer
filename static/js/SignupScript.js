@@ -8,6 +8,14 @@ $(document).ready(function() {
     $("#id_password").keyup(checkUsername);
     $("#id_repeat_password").keyup(checkUsername);
     $("#id_university").change(universitySelectorChanged);
+	
+	document.getElementById("id_username").className += "form-control"
+	document.getElementById("id_first_name").className += "form-control"
+	document.getElementById("id_last_name").className += "form-control"
+	document.getElementById("id_email").className += "form-control"
+	document.getElementById("id_password").className += "form-control"
+	document.getElementById("id_repeat_password").className += "form-control"
+	document.getElementById("id_university").className += "form-control"
 });
 
 function checkPasswords() {
