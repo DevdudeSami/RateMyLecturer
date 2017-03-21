@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^requests/getComments$', requests.getComments, name='getComments'),
     url(r'^requests/deleteComment$', requests.deleteComment, name='deleteComment'),
     url(r'^requests/changeScoreForComment$', requests.changeScoreForComment, name='changeScoreForComment'),
+    url(r'^requests/getDomainForUniversityName$', requests.getDomainForUniversityName, name='getDomainForUniversityName'),
 
 ]

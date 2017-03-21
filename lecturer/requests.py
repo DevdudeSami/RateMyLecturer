@@ -190,3 +190,11 @@ def changeScoreForComment(request):
         return HttpResponse("")
     else:
         return HttpResponse(INV_REQ)
+
+def getDomainForUniversityName(request):
+    if request.method == 'POST':
+        name = request.POST['universityName']
+        domain = University.objects.get(name=name).domain
+        return HttpResponse(domain)
+    else:
+        return HttpResponse(INV_REQ)

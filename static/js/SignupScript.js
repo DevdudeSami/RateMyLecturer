@@ -2,10 +2,12 @@ $(document).ready(function() {
     // Setup some of the form elements
     $("#id_repeat_password").after("<p id=\"passwordDisplay\"></p>");
     $("#id_username").after("<p id=\"userDisplay\"></p>");
+    $("#id_university").after("<p id=\"universityDisplay\"></p>");
 
     $("#id_username").keyup(checkUsername);
     $("#id_password").keyup(checkUsername);
     $("#id_repeat_password").keyup(checkUsername);
+    $("#id_university").change(universitySelectorChanged);
 });
 
 function checkPasswords() {
@@ -69,11 +71,52 @@ function checkUserCallback(data, textStatus, xhr) {
         document.getElementById("submitButton").disabled = false;
     }
 
-    if (($('#id_username').val().indexOf(' ') !== -1) || ($('#id_username').val().length < 7) || (data == "NO") || !checkPasswords()) {
+    if (($('#id_username').val().indexOf(' ') !== -1) || ($('#id_username').val().length < 7) || (data == "NO") || !checkPasswords() || !universityCorrect) {
         document.getElementById("submitButton").disabled = true;
     }
 
     if (display != "") {
         document.getElementById("userDisplay").innerHTML = display;
     }
+}
+
+function universitySelectorChanged() {
+    if(isProcessing) {
+        ajaxQueue.push(universitySelectorChanged);
+        return;
+    }
+
+    // Start checking for email changes too
+    $("#id_email").keyup(universitySelectorChanged);
+
+    isProcessing = true;
+    $.ajax({
+        type: 'post',
+        url: '/lecturer/requests/getDomainForUniversityName',
+        data: {universityName: $('#id_university option:selected').html()},
+        success: recievedUniversityDomain
+    });
+}
+
+var universityCorrect = true;
+function recievedUniversityDomain(domain) {
+    nextAjaxRequest();
+
+    var display = "";
+
+    var email = $("#id_email").val();
+    var emailSplit = email.split("@");
+    if(emailSplit.length == 2) {
+        if(domain != emailSplit[1]) {
+            universityCorrect = false;
+            document.getElementById("submitButton").disabled = true;
+            display = "<b style=\"color: red;\">Your email domain does not match the university you chose.</b>";
+        }
+    } else {
+        universityCorrect = false;
+        document.getElementById("submitButton").disabled = true;
+        display = "<b style=\"color: red;\">Please enter a valid email address.</b>";
+    }
+
+    $("#universityDisplay").html(display);
 }
