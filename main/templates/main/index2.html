@@ -2,7 +2,7 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Bootstrap Cover Template</title>
+  <title>Rate My Lecturer</title>
   
   
   <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
@@ -22,9 +22,7 @@
 
           <div class="masthead clearfix">
             <div class="container inner">
-              <h3 class="masthead-brand">
-                <img src="/static/img/lecturerlog.png" id="lecturerlogo" class="img-responsive">
-                </h3>
+              <img src="/static/img/logo.png" class="masthead-brand" height=27% width=27%>
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="{% url 'main:index' %}">Home</a></li>
@@ -35,20 +33,35 @@
 							<li class="active"><a href="{% url 'log:signup' %}">Sign Up </a></li>
 							<li class="active"><a href="{% url 'log:login' %}">Login</a></li>
 						{% endif %}
-                </ul>
+                    <form class="navbar-form navbar-right" role="search">
+						<div class="form-group">
+                            <select class="form-control" id="universitiesSelect" onchange="universitiesSelectChanged()">
+                            </select>
+							<input type="text" class="form-control" id="lecturer"
+								onkeyup="searchLecturers()" placeholder="Lecturer Search">
+						</div>
+					</form>
+                  </ul>
                   
                 
               </nav>
             </div>
           </div>
-          <div class="row">
+            {% if user.is_authenticated %}
+                <h2 class="text-center">Hello {{ user.username }}, Welcome to Rate My Lecturer</h2> <br>
+            {% else %}
+            <h2 class="text-center">Welcome to Rate My Lecturer</h2><br>
+            {% endif %}
+            
+            <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
-				<h4 class="text-center"> Top 5 Lecturers </h4>
+                <font color="#0077b0"><h4 class="text-center"> Top 5 Lecturers </h4></font>
 				<table class="table text-center table-hover">
                     {% for lecturer in lecturers %}
                     <tr>
-						<td><a id="link" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
+						
+                        <td><a id="link" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
 						<td> {{lecturer.get_rating}} </td>
 					</tr>
                     {% endfor %}
@@ -57,7 +70,7 @@
 		</div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
-				<h4 class="text-center"> Top 5 Universities </h4>
+                <font color="#0077b0"><h4 class="text-center"> Top 5 Universities </h4></font>
 				<table class="table text-center table-hover">
                     {% for university in universities %}
 					<tr>
