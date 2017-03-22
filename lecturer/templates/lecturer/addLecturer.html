@@ -16,12 +16,17 @@
     <p>
         <form name="addLecturerForm" action="/lecturer/add" method="post">
             {% csrf_token %}
-
+			
+			<label>Title:</label>
             <input class="form-control" type="text" id="title" name="title" placeholder="Title" /><br />
+			<label>First Name:</label>
             <input class="form-control" type="text" id="firstName" name="firstName" placeholder="First Name" /><br />
+			<label>Last Name:</label>
             <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Last Name" /><br />
+			<label>University:</label>
             <input class="form-control" type="text" id="university" onkeyup="searchUniversities()" name="university" placeholder="University" /><br />
             <p id="universityResults"></p>
+			<label>Department:</label>
             <input class="form-control" type="text" id="department" onkeyup="searchDepartments()" name="department" placeholder="Department" /><br />
             <p id="departmentResults"></p>
 

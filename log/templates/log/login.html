@@ -13,10 +13,12 @@
 
     <form id="login_form" method="post" action="/log/login/">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username"  class="form-control"/>
-        <br />
-        <input type="password" name="password" placeholder="Password"  class="form-control"/>
-        <br />
+		<label>Username:</label> 
+        <input type="text" name="username"  class="form-control"/>
+        <br/>
+		<label>Password:</label>
+        <input type="password" name="password"  class="form-control"/>
+        <br/>
 
         <input class="btn btn-default" type="submit" value="Submit" />
     </form>
