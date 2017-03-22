@@ -1,45 +1,41 @@
 {% extends 'main/base.html' %}
 
-{% block title_block %}
-    Welcome to Rate My Lecturer
-{% endblock %}
-
-{% block body_block %}
-
-    {% if user.is_authenticated %}
-		<h2 class="text-center">Hello {{ user.username }}, Welcome to Rate My Lecturer</h2> <br>
-	{% else %}
-		<h2 class="text-center">Welcome to Rate My Lecturer</h2> <br>
-    {% endif %}
-
-	<div class="row">
-		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+{% block body_block %}		
+			
+            {% if user.is_authenticated %}
+                <h2 class="text-center">Hello {{ user.username }}, Welcome to Rate My Lecturer</h2> <br>
+            {% else %}
+            <h2 class="text-center">Welcome to Rate My Lecturer</h2><br>
+            {% endif %}
+            <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
-				<h4 class="text-center"> Top 5 Lecturers </h4>
-				<table class="table table-hover">
+                <font color="#0077b0"><h4 class="text-center"> Top 5 Lecturers </h4></font>
+				<table class="table text-left table-hover">
                     {% for lecturer in lecturers %}
                     <tr>
-						<td class="text-center"><a id="link" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
-						<td class="text-left"> {{lecturer.get_rating}} </td>
+						
+                        <td class="text-left"><a id="link" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
+						<td class="text-right"> {{lecturer.get_rating}} </td>
 					</tr>
                     {% endfor %}
 				</table>
 			</div>
 		</div>
-		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
-				<h4 class="text-center"> Top 5 Universities </h4>
-				<table class="table table-hover">
+                <font color="#0077b0"><h4 class="text-center"> Top 5 Universities </h4></font>
+				<table class="table  table-hover">
                     {% for university in universities %}
 					<tr>
-						<td class="text-center"><a id="link" href="/lecturer/universityPage/{{university.id}}">{{university.name}}</a></td>
-						<td class="text-left"> {{university.get_rating}} </td>
+						<td class="text-left"><a id="link" href="/lecturer/universityPage/{{university.id}}">{{university.name}}</a></td>
+						<td class="text-right"> {{university.get_rating}} </td>
 					</tr>
                     {% endfor %}
 				</table>
-			</div>
-		</div>
-	</div>
+			 </div>
+		     </div>
+            </div>
 
 
 {% endblock %}
