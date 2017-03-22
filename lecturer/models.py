@@ -57,6 +57,12 @@ class Lecturer(models.Model):
         total = reduce((lambda x,y: x+y), map(lambda r: r.value, ratings))
         return float(format(total/ratings.count(), '.2f'))
 
+    def get_university(self):
+        return self.university.name
+
+    def get_department(self):
+        return self.department.name
+
 
 class Rating(models.Model):
     value = models.IntegerField(default=0)
