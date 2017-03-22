@@ -11,7 +11,7 @@
         </title>
 
 		<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
-        <link rel="stylesheet" href="static/Bootstrap/css/custom.css">
+        <link rel="stylesheet" href="/static/Bootstrap/css/custom.css">
         <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
@@ -50,6 +50,7 @@
                   </ul>
                 </nav>        
             </div>
+            <div class="well" id="lecturerResults" style="display:none"> </div>
             {% block body_block %}
 				This is body_block's default content.
             {% endblock %}    
