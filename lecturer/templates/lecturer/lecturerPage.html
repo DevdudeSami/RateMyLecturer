@@ -26,29 +26,25 @@
         Department: {{ lecturer.department.name }}
     </p>
 
-    {% if userInUni %}
-    <p>
-        Rate this lecturer:
-
-        <!-- Using this to iterate a fixed number of times -->
-        {% for i in "1234567890" %}
-            <img src="{% static 'img/star.png' %}" width=25 class="rateLecturerButton" id="rateLecturerButton{{forloop.counter}}" onclick="rateLecturer({{forloop.counter}})">
-        {% endfor %}
-    </p>
-    {% endif %}
 
     <p>
         Average rating: <span id="averageRating">{{ lecturer.get_rating }}</span>
     </p>
 
     {% if userInUni %}
-    <p id="addCommentArea" {% if userCommented %} hidden="true" {% endif %}>
+    <p class="well" id="addCommentArea" {% if userCommented %} hidden="true" {% endif %}>
+		Rate this lecturer:
+
+        <!-- Using this to iterate a fixed number of times -->
+        {% for i in "1234567890" %}
+            <img src="{% static 'img/star.png' %}" width=25 class="rateLecturerButton" id="rateLecturerButton{{forloop.counter}}" onclick="rateLecturer({{forloop.counter}})">
+        {% endfor %} <br> <br>
         <textarea id="commentText{% if userCommented %}-hidden{% endif %}"></textarea> <br />
-        <button onclick="addComment()">Comment</button>
-        <input type="checkbox" value="Submit Anonymously" id="anonymousCheck{% if userCommented %}-hidden{% endif %}" /> Submit Anonymously
+        <input type="checkbox" value="Submit Anonymously" id="anonymousCheck{% if userCommented %}-hidden{% endif %}" /> Submit Anonymously <br>
+		<button class="btn-default" onclick="addComment()">Comment</button>
     </p>
     {% endif %}
 
-    <div id="comments"></div>
+    <div class="well text-left" id="comments"></div>
 
 {% endblock %}

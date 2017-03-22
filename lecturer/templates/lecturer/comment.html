@@ -1,3 +1,6 @@
+<table class="table">
+<tr>
+<td>
 <div {% if comment.user.id == user.id %} id="userComment" {% endif %} class="comment">
     {% if comment.is_anonymous == 0 %}
         <b>{{ comment.user.username }}</b>
@@ -8,16 +11,13 @@
     <blockquote {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
         {{ comment.comment_text }}
     </blockquote>
-    on <i>{{ comment.date_commented }}</i> {% if rating %} and gave a rating of {{ rating.value }}.{% endif %}
+    on <i>{{ comment.date_commented }}</i> 
 
-    {% if comment.user.id == user.id %}
-        <button onclick="editComment()">Edit Comment</button>
-        <button onclick="deleteComment({{comment.id}})">Delete Comment</button>
-    {% endif %}
+    
     <br />
     <span class="scoreContainer"><i>Score: </i>
         {% if user.is_authenticated %}
-        <button onclick="
+        <button class ="btn-default" onclick="
                          {% if userScore == 1 %}
                             clearScore({{ comment.id }})
                          {% else %}
@@ -31,7 +31,7 @@
 		{% endif %}
         </button>&emsp;
         <span class="score">{{ comment.score }}</span>
-        &emsp;<button onclick="
+        &emsp;<button class="btn-default" onclick="
                          {% if userScore == -1 %}
                             clearScore({{ comment.id }})
                          {% else %}
@@ -48,16 +48,30 @@
         {{ comment.score }}
         {% endif %}
     </span>
-    <br>
-    <br /><br />
+	<br> <br>
+	{% if comment.user.id == user.id %}
+        <button class="btn-default" onclick="editComment()">Edit</button>
+    {% endif %}
+    <br><br>
 </div>
-
 {% if comment.user.id == user.id %}
 <div id="editCommentDiv" hidden="true">
-    Edit your comment: <br />
-    <textarea id="commentText"></textarea> <br />
-    <button onclick="addComment()">Finish Editing Comment</button>
-    <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously <br />
-    <button onclick="getComments()">Cancel</button>
+	
+    Edit your comment: <br>
+    <textarea id="commentText"></textarea> <br>
+    <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously <br><br>
+	<button class="btn-default" onclick="addComment()">Finish</button>
+    <button class="btn-default" onclick="getComments()">Cancel</button>
+	<button class="btn-default" onclick="deleteComment({{comment.id}})">Delete</button>
+	<br><br>
 </div>
 {% endif %}
+</td>
+<td> 
+	Stars Go Here  <br>
+	{% if rating %}gave a rating of {{ rating.value }}.{% endif %}	 
+	</td>
+</tr>
+</table>
+
+

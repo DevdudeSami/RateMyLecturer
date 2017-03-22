@@ -29,6 +29,10 @@ a:hover {
 	
  }
  
+ textarea {
+	color:black;
+ }
+ 
 html,
 body {
   height: 100%;
