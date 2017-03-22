@@ -1,0 +1,48 @@
+University of Cambridge;Cambridge
+Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosophy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics;
+student.cam.ac.uk
+University of Oxford;Oxford
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosophy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.oxf.ac.uk
+University of Glasgow;Glasgow
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosophy;English literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.gla.ac.uk
+University of Nottingham;Nottingham
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.not.ac.uk
+University of Warwick;Warwick
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.war.ac.uk
+University of Sheffield;Sheffield
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.shef.ac.uk
+University of Birmingham;Birmingham
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.bir.ac.uk
+University of Leeds;Leeds
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.lee.ac.uk
+University of Durham;Durham
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.dur.ac.uk
+University of Edinburgh;Edinburgh
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.edi.ac.uk
+University of Aberdeen;Aberdeen
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.abe.ac.uk
+University of St Andrews;StAndrews
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.and.ac.uk
+University of Manchester;Manchester
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.man.ac.uk
+University of Bath;Bath
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.bath.ac.uk
+Caledonian University;Caledonian
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.cal.ac.uk
+Cardiff University;Cardiff
+Maths;Chemistry;Computing Science;Earth Sciences;Engineering;Physics;Philosphy;English Literature;Music;Biochemistry;Medicine;Psychiatry;Law;Economics
+student.car.ac.uk
