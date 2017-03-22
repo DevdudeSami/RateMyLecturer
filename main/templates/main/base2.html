@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+    <head lang="en">
+        <meta charset="utf-8"/>
+        <title>
+            {% block title_block %}
+                Rate My Lecturer
+            {% endblock %}
+        </title>
+
+		<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="static/Bootstrap/css/custom.css">
+        <script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/csrf.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/AjaxQueue.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/SearchLecturersScript.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/UniversitySelectScript.js' %}"></script>
+
+        {% block script_block %}
+        {% endblock %}
+    </head>
+    <body>
+    <div class="site-wrapper">
+      <div class="site-wrapper-inner">
+        <div class="container">
+          <div class="masthead clearfix">
+            <div class="container inner">
+              <img src="/static/img/logo.png" class="masthead-brand" height=27% width=27%>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="{% url 'main:index' %}">Home</a></li>
+						{% if user.is_authenticated %}
+							<li class="active"><a href="{% url 'log:logout' %}">Logout </a></li>
+							<li class="active"><a href="{% url 'lecturer:add' %}">Add Lecturer</a></li>
+						{% else %}
+							<li class="active"><a href="{% url 'log:signup' %}">Sign Up </a></li>
+							<li class="active"><a href="{% url 'log:login' %}">Login</a></li>
+						{% endif %}
+                    <form class="navbar-form navbar-right" role="search">
+						<div class="form-group">
+                            <select class="form-control" id="universitiesSelect" onchange="universitiesSelectChanged()">
+                            </select>
+							<input type="text" class="form-control" id="lecturer"
+								onkeyup="searchLecturers()" placeholder="Lecturer Search">
+						</div>
+					</form>
+                  </ul>
+                </nav>        
+            </div>
+            {% block body_block %}
+				This is body_block's default content.
+            {% endblock %}    
+          </div>    
+          </div>
+        </div>
+        </div>
+        
+    </body>
+    
+    
+    
+    
+</html>

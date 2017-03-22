@@ -1,58 +1,12 @@
-<!DOCTYPE html>
-<html >
-<head>
-  <meta charset="UTF-8">
-  <title>Rate My Lecturer</title>
-  
-  
-  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+{% extends 'main/base2.html' %}
 
-      <link rel="stylesheet" href="static/Bootstrap/css/custom.css">
-
-  
-</head>
-
-<body>
-  
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="container">
-
-          <div class="masthead clearfix">
-            <div class="container inner">
-              <img src="/static/img/logo.png" class="masthead-brand" height=27% width=27%>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="{% url 'main:index' %}">Home</a></li>
-						{% if user.is_authenticated %}
-							<li class="active"><a href="{% url 'log:logout' %}">Logout </a></li>
-							<li class="active"><a href="{% url 'lecturer:add' %}">Add Lecturer</a></li>
-						{% else %}
-							<li class="active"><a href="{% url 'log:signup' %}">Sign Up </a></li>
-							<li class="active"><a href="{% url 'log:login' %}">Login</a></li>
-						{% endif %}
-                    <form class="navbar-form navbar-right" role="search">
-						<div class="form-group">
-                            <select class="form-control" id="universitiesSelect" onchange="universitiesSelectChanged()">
-                            </select>
-							<input type="text" class="form-control" id="lecturer"
-								onkeyup="searchLecturers()" placeholder="Lecturer Search">
-						</div>
-					</form>
-                  </ul>
-                  
-                
-              </nav>
-            </div>
-          </div>
+{% block body_block %}		
+			
             {% if user.is_authenticated %}
                 <h2 class="text-center">Hello {{ user.username }}, Welcome to Rate My Lecturer</h2> <br>
             {% else %}
             <h2 class="text-center">Welcome to Rate My Lecturer</h2><br>
             {% endif %}
-            
             <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
@@ -79,20 +33,9 @@
 					</tr>
                     {% endfor %}
 				</table>
-			</div>
-		</div>
-            
-            
+			 </div>
+		     </div>
             </div>
-            
-          
 
-        </div>
 
-      </div>
-
-    </div>
-  
-  
-</body>
-</html>
+{% endblock %}
