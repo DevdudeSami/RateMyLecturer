@@ -11,9 +11,9 @@
 {% endblock %}
 
 {% block body_block %}
-    <h2>{{ university.name }}</h2>
+    <h2>{{ university.name }}</h2><br/>
 		{% for department in departments %}
-			<h3>{{ department.name }}</h3>
+        <font color=#0077b0><h3>{{ department.name }}</h3></font>
 			<table class="table table-hover">
 			{% for lecturer in department.get_lecturers %}
 				<tr>
