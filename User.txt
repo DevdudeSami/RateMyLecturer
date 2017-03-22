@@ -1,5 +1,0 @@
-JohnSmith;John;Smith;0000001;password001
-DavidJones;David;Jones;0000002;password002
-MichaelSmith;Michael;Smith;0000003;password003
-DavidBrown;David;Brown;0000004;password004
-DanCecoi;Dan;Cecoi;2193860;password005
