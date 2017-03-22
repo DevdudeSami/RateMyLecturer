@@ -32,11 +32,12 @@
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="{% url 'main:index' %}">Home</a></li>
 						{% if user.is_authenticated %}
-							<li class="active"><a href="{% url 'log:logout' %}">Logout </a></li>
-							<li class="active"><a href="{% url 'lecturer:add' %}">Add Lecturer</a></li>
+							 <li class="active"><a href="{% url 'lecturer:add' %}">Add Lecturer</a></li>
+                             <li class="active"><a href="{% url 'log:logout' %}">Log Out </a></li>
+							
 						{% else %}
 							<li class="active"><a href="{% url 'log:signup' %}">Sign Up </a></li>
-							<li class="active"><a href="{% url 'log:login' %}">Login</a></li>
+							<li class="active"><a href="{% url 'log:login' %}">Log In</a></li>
 						{% endif %}
                     <form class="navbar-form navbar-right" role="search">
 						<div class="form-group">

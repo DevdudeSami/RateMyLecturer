@@ -7,15 +7,15 @@
 {% block body_block %}
 
     {% if user.is_authenticated %}
-		<h2 class="text-center">Hello {{ user.username }}, Welcome to Rate My Lecturer</h2> <br>
+ <h2 class="text-center"><font color=#0077b0>Hello</font> {{ user.username }}, <font color=#0077b0> Welcome to Rate my Lecturer.</font></h2> <br>
 	{% else %}
-		<h2 class="text-center">Welcome to Rate My Lecturer</h2> <br>
+<font color=#0077b0><h2 class="text-center">Welcome to Rate my Lecturer.</h2></font> <br>
     {% endif %}
 
 	<div class="row">
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
-                <font color=#0077b0><h4 class="text-center"> Top 5 Lecturers </h4></font>
+                <font color=#0077b0><h4 class="text-center"> Top 5 Lecturers:</h4></font>
 				<table class="table table-hover">
                     {% for lecturer in lecturers %}
                     <tr>
@@ -28,7 +28,7 @@
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="well">
-                <font color=#0077b0><h4 class="text-center"> Top 5 Universities </h4></font>
+                <font color=#0077b0><h4 class="text-center"> Top 5 Universities: </h4></font>
 				<table class="table table-hover">
                     {% for university in universities %}
 					<tr>

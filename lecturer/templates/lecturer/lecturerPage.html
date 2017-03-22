@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title_block %}
-    {{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}
+{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}
 {% endblock %}
 
 {% block script_block %}
@@ -19,7 +19,7 @@
 
 {% block body_block %}
 
-    <h1>{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}</h1>
+<font color=#0077b0><h1>{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}</h1></font>
 
     <p>
         University: {{ lecturer.university }} <br />
