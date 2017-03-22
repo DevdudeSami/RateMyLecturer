@@ -24,6 +24,7 @@ a:hover {
  * Base structure
  */
 
+
  html {
 	
  }
@@ -32,6 +33,7 @@ html,
 body {
   height: 100%;
   background-color: #fff;
+  font-family: 'Roboto', sans-serif
 }
 body {
   color: #fff;
@@ -40,6 +42,8 @@ body {
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
+
+
 
 .img-responsive{
     max-width: 20%;
@@ -61,6 +65,7 @@ body {
   margin-right: auto;
   margin-left: auto;
 }
+
 
 /* Padding for spacing */
 .inner {
@@ -148,6 +153,10 @@ body {
   .site-wrapper-inner {
     vertical-align: middle;
   }
+
+
+}    
+
 .table td{
     border: none  !important;
 }
@@ -156,5 +165,9 @@ body {
   background-color: #0077b0;
 }
 
+
+.btn, .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #0077b0 !important;
+}
 
 }

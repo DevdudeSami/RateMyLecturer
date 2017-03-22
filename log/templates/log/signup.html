@@ -6,11 +6,11 @@
 {% endblock %}
 
 {% block title_block %}
-    Signup for Rate My Lecturer
+    Sign Up for Rate My Lecturer
 {% endblock %}
 
 {% block body_block %}
-    <h2>Signup</h2>
+    <h2>Signup</h2><br/>
 
     {% if registered %}
     <strong>Thank you for registering!</strong>
@@ -23,11 +23,11 @@
 			<!-- Display each form. The as_p method wraps each element in a paragraph
 				 (<p>) element. This ensures each element appears on a new line,
 				 making everything look neater. --> 
-			{{ user_form.as_p }} 
-			{{ profile_form.as_p }}
+            <font color=#0077b0>{{ user_form.as_p }}</font>
+            <font color=#0077b0>{{ profile_form.as_p }}</font>
 			
 			<!-- Provide a button to click to submit the form. -->
-			<input id="submitButton" type="submit" name="submit" value="Sign Up" />
+            <input id="submitButton" type="submit" name="submit" value="Sign Up"/>
 		</form>
     {% endif %}
 {% endblock %}
