@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap Cover Template</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="static/Bootstrap/css/custom.css">
+
+  
+</head>
+
+<body>
+  
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="container">
+
+          <div class="masthead clearfix">
+            <div class="container inner">
+              <h3 class="masthead-brand">
+                <img src="/static/img/lecturerlog.png" id="lecturerlogo" class="img-responsive">
+                </h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="{% url 'main:index' %}">Home</a></li>
+						{% if user.is_authenticated %}
+							<li class="active"><a href="{% url 'log:logout' %}">Logout </a></li>
+							<li class="active"><a href="{% url 'lecturer:add' %}">Add Lecturer</a></li>
+						{% else %}
+							<li class="active"><a href="{% url 'log:signup' %}">Sign Up </a></li>
+							<li class="active"><a href="{% url 'log:login' %}">Login</a></li>
+						{% endif %}
+                </ul>
+                  
+                
+              </nav>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="well">
+				<h4 class="text-center"> Top 5 Lecturers </h4>
+				<table class="table text-center table-hover">
+                    {% for lecturer in lecturers %}
+                    <tr>
+						<td><a id="link" href="/lecturer/{{lecturer.id}}">{{lecturer.title}} {{lecturer.first_name}} {{lecturer.last_name}}</a></td>
+						<td> {{lecturer.get_rating}} </td>
+					</tr>
+                    {% endfor %}
+				</table>
+			</div>
+		</div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+			<div class="well">
+				<h4 class="text-center"> Top 5 Universities </h4>
+				<table class="table text-center table-hover">
+                    {% for university in universities %}
+					<tr>
+						<td><a id="link" href="/lecturer/universityPage/{{university.id}}">{{university.name}}</a></td>
+						<td> {{university.get_rating}} </td>
+					</tr>
+                    {% endfor %}
+				</table>
+			</div>
+		</div>
+            
+            
+            </div>
+            
+          
+
+        </div>
+
+      </div>
+
+    </div>
+  
+  
+</body>
+</html>
