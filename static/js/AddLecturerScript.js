@@ -30,7 +30,7 @@ function pickUniversity(name) {
     $("#university").val(name);
     $("#university").prop("readonly", true);
 
-    $("#universityResults").html("<button onclick='changeUniversity()'>Change University</button>");
+    $("#universityResults").html("<button class='btn btn-default' onclick='changeUniversity()'>Change University</button>");
 }
 
 function changeUniversity() {
@@ -75,7 +75,7 @@ function pickDepartment(name) {
     $("#department").val(name);
     $("#department").prop("readonly", true);
 
-    $("#departmentResults").html("<button onclick='changeDepartment()'>Change Department</button>");
+    $("#departmentResults").html("<button class='btn btn-default' onclick='changeDepartment()'>Change Department</button>");
 }
 
 function changeDepartment() {

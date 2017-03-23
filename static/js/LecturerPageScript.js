@@ -184,3 +184,4 @@ function deleteCommentCallback(data) {
 
     getEverything();
 }
+

@@ -1,6 +1,7 @@
 from lecturer.models import University
 from django.http import HttpResponse
 
+INV_REQ = "invalidRequest5987@@!#inv_req"
 
 def getAllUniversitiesAsOptions(request):
     if request.method == 'POST':

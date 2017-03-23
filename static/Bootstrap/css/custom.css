@@ -33,8 +33,9 @@ a:hover {
 	color:black;
  }
  
-html,
-body {
+
+ 
+html, body {
   height: 100%;
   background-color: #fff;
   font-family: 'Roboto', sans-serif
@@ -161,6 +162,10 @@ body {
 
 }    
 
+#form-control {
+	width:50%
+}
+
 .table td{
     border: none  !important;
 }
@@ -172,6 +177,4 @@ body {
 
 .btn, .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
     background-color: #0077b0 !important;
-}
-
 }

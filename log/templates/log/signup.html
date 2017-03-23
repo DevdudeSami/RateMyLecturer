@@ -10,13 +10,13 @@
 {% endblock %}
 
 {% block body_block %}
-<font color=#0077b0><h2>Sign Up:</h2></font><br/>
+<font color=#0077b0><h2 class="text-left">Sign Up:</h2></font><br/>
 
     {% if registered %}
     <strong>Thank you for registering!</strong>
     <a href="/log/login/">Log In</a><br />
     {% else %}
-		<form id="user_form" method="post" action="/log/signup/" enctype="multipart/form-data">
+		<form class="col-lg-4 col-md-6 col-sm-8 col-xs-10 text-left" id="user_form" method="post" action="/log/signup/" enctype="multipart/form-data">
 
 			{% csrf_token %}
 

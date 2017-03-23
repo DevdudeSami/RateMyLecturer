@@ -1,77 +1,79 @@
-<table class="table">
-<tr>
-<td>
-<div {% if comment.user.id == user.id %} id="userComment" {% endif %} class="comment">
-    {% if comment.is_anonymous == 0 %}
-        <b>{{ comment.user.username }}</b>
-    {% else %}
-        <b>Anonymous commenter</b>
-    {% endif %} <i>[{{comment.user.user_profile.score}}]</i>
-    said:
-    <blockquote {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
-        {{ comment.comment_text }}
-    </blockquote>
-    on <i>{{ comment.date_commented }}</i> 
+<div class="row">
+	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12">
+		<div {% if comment.user.id == user.id %} id="userComment" {% endif %} class="comment">
+			{% if comment.is_anonymous == 0 %}
+				<b>{{ comment.user.username }}</b>
+			{% else %}
+				<b>Anonymous commenter</b>
+			{% endif %} <i>[{{comment.user.user_profile.score}}]</i>
+			said:
+			<blockquote style="word-wrap:break-word" {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
+				{{ comment.comment_text }}
+			</blockquote>
+			on <i>{{ comment.date_commented }}</i> 
 
-    
-    <br />
-    <span class="scoreContainer"><i>Score: </i>
-        {% if user.is_authenticated %}
-        <button class ="btn-default" onclick="
-                         {% if userScore == 1 %}
-                            clearScore({{ comment.id }})
-                         {% else %}
-                            scoreUp({{ comment.id }})
-                         {% endif %}
-                         ">
-        {% if userScore == 1 %}
-			<span class="glyphicon glyphicon-remove-circle"></span>
-		{% else %}
-			<span class="glyphicon glyphicon-thumbs-up"></span>
-		{% endif %}
-        </button>&emsp;
-        <span class="score">{{ comment.score }}</span>
-        &emsp;<button class="btn-default" onclick="
-                         {% if userScore == -1 %}
-                            clearScore({{ comment.id }})
-                         {% else %}
-                            scoreDown({{ comment.id }})
-                         {% endif %}
-                         ">
-        {% if userScore == -1 %}
-			<span class="glyphicon glyphicon-remove-circle"></span>
-		{% else %}
-			<span class="glyphicon glyphicon-thumbs-down"></span>
-		{% endif %}
-        </button>
-        {% else %}
-        {{ comment.score }}
-        {% endif %}
-    </span>
-	<br> <br>
-	{% if comment.user.id == user.id %}
-        <button class="btn-default" onclick="editComment()">Edit</button>
-    {% endif %}
-    <br><br>
-</div>
-{% if comment.user.id == user.id %}
-<div id="editCommentDiv" hidden="true">
+			
+			<br />
+			<span class="scoreContainer">
+				{% if user.is_authenticated %}
+					{% if comment.user.id == user.id %}
+						<button class="btn-default" onclick="editComment()">Edit</button>
+					{% else %}
+						<i>Score: </i>
+						<button class ="btn-default" onclick="
+										 {% if userScore == 1 %}
+											clearScore({{ comment.id }})
+										 {% else %}
+											scoreUp({{ comment.id }})
+										 {% endif %}
+										 ">
+						{% if userScore == 1 %}
+							<span class="glyphicon glyphicon-remove-circle"></span>
+						{% else %}
+							<span class="glyphicon glyphicon-thumbs-up"></span>
+						{% endif %}
+						</button>&emsp;
+						<span class="score">{{ comment.score }}</span>
+						&emsp;<button class="btn-default" onclick="
+										 {% if userScore == -1 %}
+											clearScore({{ comment.id }})
+										 {% else %}
+											scoreDown({{ comment.id }})
+										 {% endif %}
+										 ">
+						{% if userScore == -1 %}
+							<span class="glyphicon glyphicon-remove-circle"></span>
+						{% else %}
+							<span class="glyphicon glyphicon-thumbs-down"></span>
+						{% endif %}
+						</button>
+					{% endif %}
+				{% else %}
+					Comment Rating : {{ comment.score }}
+				{% endif %}
+			</span>
+			<br><br>
+		</div>
+		{% if comment.user.id == user.id %}
+			<div id="editCommentDiv" hidden="true">
+				Edit your comment: <br>
+				<textarea id="commentText"></textarea> <br>
+				<input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously <br><br>
+				<button class="btn-default" onclick="addComment()">Finish</button>
+				<button class="btn-default" onclick="getComments()">Cancel</button>
+				<button class="btn-default" onclick="deleteComment({{comment.id}})">Delete</button>
+				<br><br>
+			</div>
+	{% endif %}
+	</div>
 	
-    Edit your comment: <br>
-    <textarea id="commentText"></textarea> <br>
-    <input type="checkbox" value="Submit Anonymously" id="anonymousCheck" /> Submit Anonymously <br><br>
-	<button class="btn-default" onclick="addComment()">Finish</button>
-    <button class="btn-default" onclick="getComments()">Cancel</button>
-	<button class="btn-default" onclick="deleteComment({{comment.id}})">Delete</button>
-	<br><br>
+	
+	<div class="col-lg-6 col-md-6 col-sm-4 hidden-xs">
+
+		<font class="text-right" color="#FFD700" size="40px" > {% if rating %} {{ rating.value }} Stars {% else %} - {% endif %}</font>
+		
+	</div>
+
 </div>
-{% endif %}
-</td>
-<td> 
-	Stars Go Here  <br>
-	{% if rating %}gave a rating of {{ rating.value }}.{% endif %}	 
-	</td>
-</tr>
-</table>
 
 

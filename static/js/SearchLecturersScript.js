@@ -28,7 +28,7 @@ function searchLecturersCallback(data) {
 
     nextAjaxRequest();
 
-    $("#lecturerResults").html("<h2>Search Results</h2><button onclick=\"clearSearch()\">Clear</button><br>" + data);
+    $("#lecturerResults").html("<h2>Search Results</h2><br>" + data);
 }
 
 function clearSearch() {

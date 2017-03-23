@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_block %}
-
+	
 <font color=#0077b0><h1>{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}</h1></font>
 
     <p>
@@ -28,8 +28,8 @@
 
 
     <p>
-        Average rating: <span id="averageRating">{{ lecturer.get_rating }}</span>
-    </p>
+       <font color="#FFD700" size="300px"> Average rating: <span id="averageRating">{{ lecturer.get_rating }}</span> </font>
+    </p> <br>
 
     {% if userInUni %}
     <p class="well" id="addCommentArea" {% if userCommented %} hidden="true" {% endif %}>
@@ -45,6 +45,6 @@
     </p>
     {% endif %}
 
-    <div class="well text-left" id="comments"></div>
+    <div class="container text-left" id="comments"></div>
 
 {% endblock %}
