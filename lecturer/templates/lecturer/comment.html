@@ -10,9 +10,9 @@
 			<blockquote style="word-wrap:break-word" {% if comment.user.id == user.id %} id="userCommentText" {% endif %}>
 				{{ comment.comment_text }}
 			</blockquote>
-			on <i>{{ comment.date_commented }}</i> 
+			on <i>{{ comment.date_commented }}</i> {% if rating %} and gave a rating of <i>{{ rating.value }} stars</i>.{% endif %}
 
-			
+
 			<br />
 			<span class="scoreContainer">
 				{% if user.is_authenticated %}
@@ -66,14 +66,12 @@
 			</div>
 	{% endif %}
 	</div>
-	
-	
-	<div class="col-lg-6 col-md-6 col-sm-4 hidden-xs">
 
-		<font class="text-right" color="#FFD700" size="40px" > {% if rating %} {{ rating.value }} Stars {% else %} - {% endif %}</font>
-		
-	</div>
+
+	<!-- <div class="col-lg-6 col-md-6 col-sm-4 hidden-xs"> -->
+
+		<!-- <font color="#FFD700"> {% if rating %} {{ rating.value }} Stars {% else %} - {% endif %}</font> -->
+
+	<!-- </div> -->
 
 </div>
-
-

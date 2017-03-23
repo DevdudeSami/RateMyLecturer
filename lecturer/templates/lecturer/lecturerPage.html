@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block body_block %}
-	
+
 <font color=#0077b0><h1>{{ lecturer.title }} {{ lecturer.first_name }} {{ lecturer.last_name }}</h1></font>
 
     <p>
@@ -26,19 +26,19 @@
         Department: {{ lecturer.department.name }}
     </p>
 
-
     <p>
-       <font color="#FFD700" size="300px"> Average rating: <span id="averageRating">{{ lecturer.get_rating }}</span> </font>
+       <font color="#FFD700" size="10px"> Average rating: <span id="averageRating">{{ lecturer.get_rating }}</span>/10 </font>
     </p> <br>
 
     {% if userInUni %}
-    <p class="well" id="addCommentArea" {% if userCommented %} hidden="true" {% endif %}>
-		Rate this lecturer:
+    Rate this lecturer:
+    <!-- Using this to iterate a fixed number of times -->
+    {% for i in "1234567890" %}
+        <img src="{% static 'img/star.png' %}" width=25 class="rateLecturerButton" id="rateLecturerButton{{forloop.counter}}" onclick="rateLecturer({{forloop.counter}})">
+    {% endfor %} <br> <br>
 
-        <!-- Using this to iterate a fixed number of times -->
-        {% for i in "1234567890" %}
-            <img src="{% static 'img/star.png' %}" width=25 class="rateLecturerButton" id="rateLecturerButton{{forloop.counter}}" onclick="rateLecturer({{forloop.counter}})">
-        {% endfor %} <br> <br>
+
+    <p class="well" id="addCommentArea" {% if userCommented %} hidden="true" {% endif %}>
         <textarea id="commentText{% if userCommented %}-hidden{% endif %}"></textarea> <br />
         <input type="checkbox" value="Submit Anonymously" id="anonymousCheck{% if userCommented %}-hidden{% endif %}" /> Submit Anonymously <br>
 		<button class="btn-default" onclick="addComment()">Comment</button>
